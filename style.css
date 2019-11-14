@@ -6,7 +6,61 @@
 
 body {
     height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.dashboard {
+    color: white;
+    text-shadow: 1px 1px black;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    width: 75vw;
+    height: 75vh;
+    background: black;
+    opacity: 0.7;
+    backdrop-filter: blur(6px);
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.1);
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: [row1-start] 152px [row1-end row2-start] auto [row2-end];
+    grid-template-areas:
+    "clock clock icon"
+    "date date weather"
+}
+
+.clock {
+    font-weight: 200;
+    width: 490px;
+    font-size: 8em;
+    place-self: center;
+    padding: 0 10px;
+    grid-area: clock;
+}
+
+.icon {
+    border: 1px solid white;
+    width: 302px;
+    height: 152px;
+    grid-area: icon;
+}
+
+.date {
+    padding: 0 10px;
+    font-size: 1.3em;
+    grid-area: date;
+    place-self:  start center;
+}
+
+.weather {
+    font-size: 1.3em;
+    width: 302px;
+    grid-area: weather;
+    border: 1px solid white;
+}
+
+.temp-container {
+    align-self: center;
 }

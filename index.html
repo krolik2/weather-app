@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,500,700,800&display=swap" rel="stylesheet">
     <title>Document</title>
-</head>
-<body>
-    <h1 class='hello'>test</h1>
-    <script src=index.js></script>
-</body>
+  </head>
+  <body>
+    <div class="dashboard">
+      <div class="clock"></div>
+      <div class="date">24-06-19</div>
+      <canvas class="icon"></canvas>
+      <div class="weather">
+        <span class='temp-container'><span class="temperature"></span><span>&#176C</span>
+          <span class="description">loading weather...</span>
+        </span>
+      </div>
+    </div>
+    <script src="skycons.js"></script>
+    <script src="index.js"></script>
+  </body>
 </html>
