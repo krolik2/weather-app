@@ -10,7 +10,7 @@ window.addEventListener("load", () => {
     position => {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
-      let weatherApi = `https://api.darksky.net/forecast/3624b3f59e055e002b7371bc12fb5983/${lat},${lon}`;
+      let weatherApi = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/3624b3f59e055e002b7371bc12fb5983/${lat},${lon}`;
       // let airQualityApi = `https://api.waqi.info/feed/geo:${lat};${lon}/?token=25043f9679b1359396e1a0704780b1304a866021`; will be added in future
 
       fetch(weatherApi)
