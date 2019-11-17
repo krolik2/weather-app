@@ -6,24 +6,25 @@ window.addEventListener("load", () => {
   const iconElement = document.querySelector(".icon");
   const errorMsg = document.querySelector(".error-msg");
 
-  navigator.geolocation.getCurrentPosition(position => {
-    lat = position.coords.latitude;
-    lon = position.coords.longitude;
-    let weatherApi = `https://api.darksky.net/forecast/3624b3f59e055e002b7371bc12fb5983/${lat},${lon}`;
-    // let airQualityApi = `https://api.waqi.info/feed/geo:${lat};${lon}/?token=25043f9679b1359396e1a0704780b1304a866021`; will be added in future
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      lat = position.coords.latitude;
+      lon = position.coords.longitude;
+      let weatherApi = `https://api.darksky.net/forecast/3624b3f59e055e002b7371bc12fb5983/${lat},${lon}`;
+      // let airQualityApi = `https://api.waqi.info/feed/geo:${lat};${lon}/?token=25043f9679b1359396e1a0704780b1304a866021`; will be added in future
 
-    fetch(weatherApi)
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        const { icon, summary, temperature } = data.currently;
-        const celsius = Math.floor((temperature - 30) / 2);
-        weatherTemperature.innerText = celsius;
-        weatherDescription.innerText = summary;
-        setIcons(icon, iconElement);
-      })
-  },
+      fetch(weatherApi)
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          const { icon, summary, temperature } = data.currently;
+          const celsius = Math.floor((temperature - 30) / 2);
+          weatherTemperature.innerText = celsius;
+          weatherDescription.innerText = summary;
+          setIcons(icon, iconElement);
+        });
+    },
     function error() {
       if (error.code == error.PERMISION_DENIED)
         iconElement.style.display = "none";
@@ -41,7 +42,6 @@ window.addEventListener("load", () => {
   getScreenSize();
   setWallpaper();
   getCurrentDate();
-
 });
 
 let screenWidth;
@@ -69,6 +69,6 @@ const getCurrentTime = setInterval(() => {
 
 const getCurrentDate = () => {
   let date = new Date();
-  const dateElement = document.querySelector('.date')
+  const dateElement = document.querySelector(".date");
   dateElement.innerText = date.toLocaleDateString();
 };

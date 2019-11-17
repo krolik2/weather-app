@@ -1,112 +1,107 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .dashboard {
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px;
-    width: 60vw;
-    height: 60vh;
-    background-color:rgba(0, 0, 0, 0.7);
-    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.1);
-    backdrop-filter: blur(6px);
-    display: grid;
-    grid-template-columns: 500px / 1fr;
-    grid-template-rows: [row1-start] 152px [row1-end row2-start] auto [row2-end];
-    grid-template-areas:
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  padding: 10px;
+  width: 60vw;
+  height: 60vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  display: grid;
+  grid-template-columns: 500px / 1fr;
+  grid-template-rows: [row1-start] 152px [row1-end row2-start] auto [row2-end];
+  grid-template-areas:
     ". icon"
     "clock weather"
     "date .";
 }
 
 .clock-wrapper {
-    width: 500px;
-    place-self: center;
-    grid-area: clock;
+  width: 500px;
+  place-self: center;
+  grid-area: clock;
 }
 
 .clock {
-    font-weight: 200;
-    font-size: 8em;
+  font-weight: 200;
+  font-size: 8em;
 }
 
 .icon {
-    width: 302px;
-    height: 152px;
+  width: 302px;
+  height: 152px;
 }
 
 .error-msg {
-    color: red;
-    font-size: 1.3em;
-    width: 302px;
-    height: 152;
-    display: none;
+  color: red;
+  font-size: 1.3em;
+  width: 302px;
+  height: 152;
+  display: none;
 }
-
 
 .wrapper {
-    grid-area: icon;
-    width: fit-content;
-    height: fit-content;
-    place-self: center;
-    margin: 0 auto;
+  grid-area: icon;
+  width: fit-content;
+  height: fit-content;
+  place-self: center;
+  margin: 0 auto;
 }
 
-
 .date {
-    font-size: 1.5em;
-    grid-area: date;
-    place-self: start center;
+  font-size: 1.5em;
+  grid-area: date;
+  place-self: start center;
 }
 
 .weather {
-    font-size: 1.3em;
-    height: fit-content;
-    width: fit-content;
-    grid-area: weather;
-    text-align: center;
-    margin: 0 auto;
+  font-size: 1.3em;
+  height: fit-content;
+  width: fit-content;
+  grid-area: weather;
+  text-align: center;
+  margin: 0 auto;
 }
 
+@media (max-width: 1290px) {
+  .clock-wrapper {
+    width: 302px;
+    padding: 0 10%;
+  }
 
-@media (max-width: 1290px){
-    
-    .clock-wrapper {
-        width: 302px;
-        padding: 0 10%;
-    }
+  .clock {
+    font-size: 4em;
+  }
 
-    .clock {
-        font-size: 4em;
-    }
+  .date {
+    width: fit-content;
+    margin: 0 auto;
+  }
 
-    .date {
-        width: fit-content;
-        margin: 0 auto;
-    }
-    
-    .dashboard {
-        width: fit-content;
-        height: fit-content;
-        grid-template-columns: repeat(1,1fr);
-        grid-row: auto;
-        grid-template-areas:
-        "clock"
-        "date"
-        "icon"
-        "weather";
-    }
-     
+  .dashboard {
+    width: fit-content;
+    height: fit-content;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row: auto;
+    grid-template-areas:
+      "clock"
+      "date"
+      "icon"
+      "weather";
+  }
 }
