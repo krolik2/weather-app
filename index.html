@@ -11,13 +11,18 @@
   </head>
   <body>
     <div class="dashboard">
-      <div class="clock"></div>
-      <div class="date">24-06-19</div>
-      <canvas class="icon"></canvas>
+      <div class="clock-wrapper">
+      <span class="clock">00:00:00</span>
+      </div>
+      <div class="date">00.00.00</div>
+      <div class="wrapper">
+         <canvas class="icon"></canvas>
+         <span class="error-msg">Please enable geolocation, in order for weahter to work</span>
+      </div>
       <div class="weather">
-        <span class='temp-container'><span class="temperature"></span><span>&#176C</span>
+          <span class="temperature"></span>
+          <span>&#176C</span>
           <span class="description">loading weather...</span>
-        </span>
       </div>
     </div>
     <script src="skycons.js"></script>
