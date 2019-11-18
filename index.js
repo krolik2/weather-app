@@ -1,4 +1,14 @@
 window.addEventListener("load", () => {
+  getWeather();
+  getScreenSize();
+  setWallpaper();
+  getCurrentDate();
+});
+
+let screenWidth;
+let screenHeight;
+
+function getWeather() {
   let lat;
   let lon;
   const weatherTemperature = document.querySelector(".temperature");
@@ -26,9 +36,10 @@ window.addEventListener("load", () => {
         });
     },
     function error() {
-      if (error.code == error.PERMISION_DENIED)
+      if (error.code == error.PERMISION_DENIED) {
         iconElement.style.display = "none";
-      errorMsg.style.display = "block";
+        errorMsg.style.display = "block";
+      }
     }
   );
 
@@ -38,14 +49,7 @@ window.addEventListener("load", () => {
     skycons.play();
     return skycons.set(iconId, Skycons[currentIcon]);
   };
-
-  getScreenSize();
-  setWallpaper();
-  getCurrentDate();
-});
-
-let screenWidth;
-let screenHeight;
+}
 
 const getScreenSize = () => {
   screenWidth = window.screen.width;
@@ -55,7 +59,9 @@ const getScreenSize = () => {
 const setWallpaper = () => {
   let wallpaperApi = `https://picsum.photos/${screenWidth}/${screenHeight}`;
   const body = document.querySelector("body");
-  fetch(wallpaperApi).then((body.style.background = `url(${wallpaperApi})`));
+  fetch(wallpaperApi).then(
+    (body.style.backgroundImage = `url(${wallpaperApi})`)
+  );
 };
 
 const getCurrentTime = setInterval(() => {
