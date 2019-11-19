@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
 let screenWidth;
 let screenHeight;
 
-function getWeather() {
+const getWeather = () => {
   let lat;
   let lon;
   const weatherTemperature = document.querySelector(".temperature");
@@ -28,6 +28,7 @@ function getWeather() {
           return res.json();
         })
         .then(data => {
+          console.log(data);
           const { icon, summary, temperature } = data.currently;
           const celsius = Math.floor((temperature - 30) / 2);
           weatherTemperature.innerText = celsius;
@@ -49,7 +50,7 @@ function getWeather() {
     skycons.play();
     return skycons.set(iconId, Skycons[currentIcon]);
   };
-}
+};
 
 const getScreenSize = () => {
   screenWidth = window.screen.width;
@@ -64,17 +65,26 @@ const setWallpaper = () => {
   );
 };
 
-const getCurrentTime = setInterval(() => {
+const clock = () => {
   let date = new Date();
   let hours = String(date.getHours()).padStart(2, "0");
   let minutes = String(date.getMinutes()).padStart(2, "0");
   let seconds = String(date.getSeconds()).padStart(2, "0");
   const clock = document.querySelector(".clock");
   clock.innerText = `${hours}:${minutes}:${seconds}`;
-}, 1000);
+};
 
 const getCurrentDate = () => {
   let date = new Date();
   const dateElement = document.querySelector(".date");
   dateElement.innerText = date.toLocaleDateString();
 };
+
+const updateWeather = setInterval(() => {
+  getWeather();
+}, 3600000);
+
+const updateTime = setInterval(() => {
+  clock();
+  getCurrentDate();
+}, 1000);
