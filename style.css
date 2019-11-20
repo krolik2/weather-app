@@ -15,7 +15,7 @@ body {
 
 .dashboard {
   color: white;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   padding: 10px;
   width: 60vw;
   height: 60vh;
@@ -23,7 +23,7 @@ body {
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6px);
   display: grid;
-  grid-template-columns: 500px / 1fr;
+  grid-template-columns: 600px / 1fr;
   grid-template-rows: [row1-start] 152px [row1-end row2-start] auto [row2-end];
   grid-template-areas:
     ". icon"
@@ -31,15 +31,14 @@ body {
     "date .";
 }
 
-.clock-wrapper {
-  width: 500px;
-  place-self: center;
-  grid-area: clock;
-}
 
 .clock {
-  font-weight: 200;
+  text-align: center;
+  width: 500px;
+  font-weight: 300;
   font-size: 8em;
+  place-self: center;
+  grid-area: clock;
 }
 
 .icon {
@@ -64,6 +63,7 @@ body {
 }
 
 .date {
+  text-align: center;
   font-size: 1.5em;
   grid-area: date;
   place-self: start center;
@@ -79,12 +79,9 @@ body {
 }
 
 @media (max-width: 1290px) {
-  .clock-wrapper {
-    width: 302px;
-    padding: 0 10%;
-  }
 
   .clock {
+    width: 250px;
     font-size: 4em;
   }
 

@@ -2,7 +2,6 @@ window.addEventListener("load", () => {
   getWeather();
   getScreenSize();
   setWallpaper();
-  getCurrentDate();
 });
 
 let screenWidth;
@@ -71,7 +70,7 @@ const clock = () => {
   let minutes = String(date.getMinutes()).padStart(2, "0");
   let seconds = String(date.getSeconds()).padStart(2, "0");
   const clock = document.querySelector(".clock");
-  clock.innerText = `${hours}:${minutes}:${seconds}`;
+  clock.textContent = `${hours}:${minutes}:${seconds}`;
 };
 
 const getCurrentDate = () => {
