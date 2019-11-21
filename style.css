@@ -23,8 +23,7 @@ body {
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6px);
   display: grid;
-  grid-template-columns: 600px / 1fr;
-  grid-template-rows: [row1-start] 152px [row1-end row2-start] auto [row2-end];
+  grid-template-columns: 1.5fr 1fr;
   grid-template-areas:
     ". icon"
     "clock weather"
@@ -58,8 +57,7 @@ body {
   grid-area: icon;
   width: fit-content;
   height: fit-content;
-  place-self: center;
-  margin: 0 auto;
+  place-self: center end;
 }
 
 .date {
@@ -74,11 +72,10 @@ body {
   height: fit-content;
   width: fit-content;
   grid-area: weather;
-  text-align: center;
-  margin: 0 auto;
+  place-self: start center;
 }
 
-@media (max-width: 1290px) {
+@media (max-width: 1100px) {
 
   .clock {
     width: 250px;
@@ -87,14 +84,14 @@ body {
 
   .date {
     width: fit-content;
-    margin: 0 auto;
   }
 
   .dashboard {
     width: fit-content;
     height: fit-content;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr;
     grid-row: auto;
+    row-gap: 15px;
     grid-template-areas:
       "clock"
       "date"

@@ -27,7 +27,6 @@ const getWeather = () => {
           return res.json();
         })
         .then(data => {
-          console.log(data);
           const { icon, summary, temperature } = data.currently;
           const celsius = Math.floor((temperature - 30) / 2);
           weatherTemperature.innerText = celsius;
