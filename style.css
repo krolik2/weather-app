@@ -57,7 +57,7 @@ body {
   grid-area: icon;
   width: fit-content;
   height: fit-content;
-  place-self: center end;
+  place-self: center;
 }
 
 .date {
