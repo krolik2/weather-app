@@ -1,11 +1,7 @@
 window.addEventListener("load", () => {
   getWeather();
   getScreenSize();
-  setWallpaper();
 });
-
-let screenWidth;
-let screenHeight;
 
 const getWeather = () => {
   let lat;
@@ -16,23 +12,20 @@ const getWeather = () => {
   const errorMsg = document.querySelector(".error-msg");
 
   navigator.geolocation.getCurrentPosition(
-    position => {
+    async function(position) {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
       let weatherApi = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/3624b3f59e055e002b7371bc12fb5983/${lat},${lon}`;
       // let airQualityApi = `https://api.waqi.info/feed/geo:${lat};${lon}/?token=25043f9679b1359396e1a0704780b1304a866021`; will be added in future
 
-      fetch(weatherApi)
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          const { icon, summary, temperature } = data.currently;
-          const celsius = Math.floor((temperature - 30) / 2);
-          weatherTemperature.innerText = celsius;
-          weatherDescription.innerText = summary;
-          setIcons(icon, iconElement);
-        });
+      const response = await fetch(weatherApi);
+      const data = await response.json();
+
+      const { icon, summary, temperature } = data.currently;
+      const celsius = Math.floor((temperature - 30) / 2);
+      weatherTemperature.innerText = celsius;
+      weatherDescription.innerText = summary;
+      setIcons(icon, iconElement);
     },
     function error() {
       if (error.code == error.PERMISION_DENIED) {
@@ -51,16 +44,18 @@ const getWeather = () => {
 };
 
 const getScreenSize = () => {
-  screenWidth = window.screen.width;
-  screenHeight = window.screen.height;
+  let screenWidth = window.screen.width;
+  let screenHeight = window.screen.height;
+  return setWallpaper(screenWidth, screenHeight);
 };
 
-const setWallpaper = () => {
+const setWallpaper = async (screenWidth, screenHeight) => {
   let wallpaperApi = `https://picsum.photos/${screenWidth}/${screenHeight}`;
+  console.log(screenWidth, screenHeight);
   const body = document.querySelector("body");
-  fetch(wallpaperApi).then(
-    (body.style.backgroundImage = `url(${wallpaperApi})`)
-  );
+  const response = await fetch(wallpaperApi);
+  const blob = await response.blob();
+  body.style.backgroundImage = `url(${URL.createObjectURL(blob)})`;
 };
 
 const clock = () => {
