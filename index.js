@@ -49,12 +49,9 @@ const getScreenSize = () => {
   return setWallpaper(screenWidth, screenHeight);
 };
 
-const setWallpaper = async (screenWidth, screenHeight) => {
-  let wallpaperApi = `https://picsum.photos/${screenWidth}/${screenHeight}`;
+const setWallpaper = (screenWidth, screenHeight) => {
   const body = document.querySelector("body");
-  const response = await fetch(wallpaperApi);
-  const blob = await response.blob();
-  body.style.backgroundImage = `url(${URL.createObjectURL(blob)})`;
+  body.style.backgroundImage = `url(https://picsum.photos/${screenWidth}/${screenHeight})`;
 };
 
 const clock = () => {
