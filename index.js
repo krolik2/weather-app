@@ -51,7 +51,6 @@ const getScreenSize = () => {
 
 const setWallpaper = async (screenWidth, screenHeight) => {
   let wallpaperApi = `https://picsum.photos/${screenWidth}/${screenHeight}`;
-  console.log(screenWidth, screenHeight);
   const body = document.querySelector("body");
   const response = await fetch(wallpaperApi);
   const blob = await response.blob();
