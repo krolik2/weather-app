@@ -6,16 +6,17 @@ window.addEventListener("load", () => {
 const getWeather = () => {
   let lat;
   let lon;
-  const weatherTemperature = document.querySelector(".temperature");
-  const weatherDescription = document.querySelector(".description");
-  const iconElement = document.querySelector(".icon");
-  const errorMsg = document.querySelector(".error-msg");
+  const weatherTemperature = document.querySelector(".weather-container__temperature");
+  const weatherDescription = document.querySelector(".weather-container__description");
+  const iconElement = document.querySelector(".animation-container__icon");
+  const errorMsg = document.querySelector(".animation-container__error-msg--invisible");
 
   navigator.geolocation.getCurrentPosition(
     async function(position) {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
-      let weatherApi = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/3624b3f59e055e002b7371bc12fb5983/${lat},${lon}`;
+      const proxy = "https://protected-badlands-82701.herokuapp.com/"
+      let weatherApi = `${proxy}https://api.darksky.net/forecast/3624b3f59e055e002b7371bc12fb5983/${lat},${lon}`;
       // let airQualityApi = `https://api.waqi.info/feed/geo:${lat};${lon}/?token=25043f9679b1359396e1a0704780b1304a866021`; will be added in future
 
       const response = await fetch(weatherApi);
@@ -28,9 +29,10 @@ const getWeather = () => {
       setIcons(icon, iconElement);
     },
     function error() {
-      if (error.code == error.PERMISION_DENIED) {
+      if (error.code === error.PERMISION_DENIED) {
         iconElement.style.display = "none";
-        errorMsg.style.display = "block";
+        errorMsg.classList.add("animation-container__error-msg--visible")
+        errorMsg.classList.remove('animation-container__error-msg--invisible');
       }
     }
   );

@@ -25,11 +25,10 @@ body {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   grid-template-areas:
-    ". icon"
-    "clock weather"
+    ". animation-container"
+    "clock weather-container"
     "date .";
 }
-
 
 .clock {
   text-align: center;
@@ -40,26 +39,6 @@ body {
   grid-area: clock;
 }
 
-.icon {
-  width: 302px;
-  height: 152px;
-}
-
-.error-msg {
-  color: red;
-  font-size: 1.3em;
-  width: 302px;
-  height: 152;
-  display: none;
-}
-
-.wrapper {
-  grid-area: icon;
-  width: fit-content;
-  height: fit-content;
-  place-self: center;
-}
-
 .date {
   text-align: center;
   font-size: 1.5em;
@@ -67,11 +46,36 @@ body {
   place-self: start center;
 }
 
-.weather {
+.animation-container {
+  width: 302px;
+  height: 152px;
+  place-self: center;
+  grid-area: animation-container;
+  
+}
+
+animation-container__icon {
+  width: 302px;
+  height: 152px;
+}
+
+.animation-container__error-msg--visible {
+  width: 302px;
+  height: 152px;
+  color: red;
+  font-size: 1.3em;
+  display: block;
+}
+
+.animation-container__error-msg--invisible {
+  display: none;
+}
+
+.weather-container {
   font-size: 1.3em;
   height: fit-content;
   width: fit-content;
-  grid-area: weather;
+  grid-area: weather-container;
   place-self: start center;
 }
 
@@ -80,10 +84,6 @@ body {
   .clock {
     width: 250px;
     font-size: 4em;
-  }
-
-  .date {
-    width: fit-content;
   }
 
   .dashboard {
@@ -95,7 +95,7 @@ body {
     grid-template-areas:
       "clock"
       "date"
-      "icon"
-      "weather";
+      "animation-container"
+      "weather-container";
   }
 }
