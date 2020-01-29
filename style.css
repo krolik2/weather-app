@@ -15,7 +15,7 @@ body {
 
 .dashboard {
   color: white;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   padding: 10px;
   width: 60vw;
   height: 60vh;
@@ -25,9 +25,10 @@ body {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   grid-template-areas:
-    ". animation-container"
-    "clock weather-container"
-    "date .";
+    "clock animation-container"
+    "date weather-container"
+    "air-quality-container air-quality-container"
+    "air-pollutant-list air-pollutant-list";
 }
 
 .clock {
@@ -37,6 +38,50 @@ body {
   font-size: 8em;
   place-self: center;
   grid-area: clock;
+}
+
+.air-quality-container {
+  font-size: 1.3em;
+  grid-area: air-quality-container;
+  place-self: start center;
+}
+
+.air-pollutant-list {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  grid-area: air-pollutant-list;
+  align-self: center;
+  font-size: 1.3em;
+}
+
+.air-pollutant-list__item {
+  position: relative;
+}
+
+.air-pollutant-list__item::after {
+  font-size: 0.6em;
+  color: #ddd;
+  font-family: "Open Sans", sans-serif;
+  position: absolute;
+  top: 30px;
+  left: 0;
+}
+
+.pm10::after {
+  content: "PM10";
+}
+
+.so2::after {
+  content: "SO2";
+}
+
+.no2::after {
+  content: "NO2";
+}
+
+.co::after {
+  content: "CO";
 }
 
 .date {
@@ -51,7 +96,6 @@ body {
   height: 152px;
   place-self: center;
   grid-area: animation-container;
-  
 }
 
 animation-container__icon {
@@ -72,15 +116,19 @@ animation-container__icon {
 }
 
 .weather-container {
-  font-size: 1.3em;
   height: fit-content;
   width: fit-content;
   grid-area: weather-container;
   place-self: start center;
 }
 
-@media (max-width: 1360px) {
+.weather-container__location {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+@media (max-width: 1360px) {
   .clock {
     width: 250px;
     font-size: 4em;
@@ -89,6 +137,7 @@ animation-container__icon {
   .dashboard {
     width: fit-content;
     height: fit-content;
+    padding-bottom: 30px;
     grid-template-columns: 1fr;
     grid-row: auto;
     row-gap: 15px;
@@ -96,6 +145,8 @@ animation-container__icon {
       "clock"
       "date"
       "animation-container"
-      "weather-container";
+      "weather-container"
+      "air-quality-container"
+      "air-pollutant-list";
   }
 }
