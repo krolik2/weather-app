@@ -6,33 +6,79 @@ window.addEventListener("load", () => {
 const getWeather = () => {
   let lat;
   let lon;
-  const weatherTemperature = document.querySelector(".weather-container__temperature");
-  const weatherDescription = document.querySelector(".weather-container__description");
+  const weatherTemperature = document.querySelector(
+    ".weather-container__temperature"
+  );
+  const weatherDescription = document.querySelector(
+    ".weather-container__description"
+  );
   const iconElement = document.querySelector(".animation-container__icon");
-  const errorMsg = document.querySelector(".animation-container__error-msg--invisible");
+  const errorMsg = document.querySelector(
+    ".animation-container__error-msg--invisible"
+  );
+  const humidityElement = document.querySelector(
+    ".weather-container__humidity"
+  );
+  const windElement = document.querySelector(".weather-container__wind");
+  const locationElement = document.querySelector(
+    ".weather-container__location"
+  );
+  const aqiElement = document.querySelector(".air-quality-container__display");
+  const pm10Element = document.querySelector(".pm10");
+  const so2Element = document.querySelector(".so2");
+  const no2Element = document.querySelector(".no2");
+  const coElement = document.querySelector(".co");
 
   navigator.geolocation.getCurrentPosition(
     async function(position) {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
-      const proxy = "https://protected-badlands-82701.herokuapp.com/"
+      const proxy = "https://protected-badlands-82701.herokuapp.com/";
       let weatherApi = `${proxy}https://api.darksky.net/forecast/3624b3f59e055e002b7371bc12fb5983/${lat},${lon}`;
-      // let airQualityApi = `https://api.waqi.info/feed/geo:${lat};${lon}/?token=25043f9679b1359396e1a0704780b1304a866021`; will be added in future
+      let airQualityApi = `${proxy}https://api.waqi.info/feed/geo:${lat};${lon}/?token=25043f9679b1359396e1a0704780b1304a866021`;
 
       const response = await fetch(weatherApi);
       const data = await response.json();
 
-      const { icon, summary, temperature } = data.currently;
+      const responseQ = await fetch(airQualityApi);
+      const dataQ = await responseQ.json();
+
+      const {
+        icon,
+        summary,
+        temperature,
+        windSpeed,
+        humidity
+      } = data.currently;
       const celsius = Math.floor((temperature - 30) / 2);
+      const milesPerHourToKilometerPerHourRatio = 1.609344;
+      const windInKmph = Math.round(
+        windSpeed * milesPerHourToKilometerPerHourRatio
+      );
+      const humidityPercentage = humidity * 100;
+      humidityElement.innerText = `H: ${humidityPercentage}%`;
+      windElement.innerText = `W: ${windInKmph} km/h`;
       weatherTemperature.innerText = celsius;
       weatherDescription.innerText = summary;
       setIcons(icon, iconElement);
+
+      const aqi = dataQ.data.aqi;
+      aqiElement.innerText = `Air quality: ${aqi} AQI`;
+      const location = dataQ.data.city.name;
+      const nameEnd = location.search(",");
+      const filteredLocationName = location.slice(0, nameEnd);
+      locationElement.innerText = filteredLocationName;
+      const { pm10, so2, no2, co } = dataQ.data.iaqi;
+      pm10Element.innerText = pm10.v;
+      so2Element.innerText = so2.v;
+      no2Element.innerText = no2.v;
+      coElement.innerText = co.v;
     },
     function error() {
       if (error.code === error.PERMISION_DENIED) {
         iconElement.style.display = "none";
-        errorMsg.classList.add("animation-container__error-msg--visible")
-        errorMsg.classList.remove('animation-container__error-msg--invisible');
+        errorMsg.classList.add("animation-container__error-msg--visible");
+        errorMsg.classList.remove("animation-container__error-msg--invisible");
       }
     }
   );

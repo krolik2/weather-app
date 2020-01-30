@@ -41,7 +41,7 @@ body {
 }
 
 .air-quality-container {
-  font-size: 1.3em;
+  font-size: 1.2em;
   grid-area: air-quality-container;
   place-self: start center;
 }
@@ -53,6 +53,7 @@ body {
   grid-area: air-pollutant-list;
   align-self: center;
   font-size: 1.3em;
+  margin-bottom: 10px;
 }
 
 .air-pollutant-list__item {
@@ -125,7 +126,7 @@ animation-container__icon {
 .weather-container__location {
   font-size: 1.5em;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 1360px) {
@@ -137,7 +138,7 @@ animation-container__icon {
   .dashboard {
     width: fit-content;
     height: fit-content;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     grid-template-columns: 1fr;
     grid-row: auto;
     row-gap: 15px;
