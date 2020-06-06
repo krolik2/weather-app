@@ -51,7 +51,8 @@ const getData = () => {
     const windInKmph = Math.round(
       windSpeed * milesPerHourToKilometerPerHourRatio
     );
-    const humidityPercentage = humidity * 100;
+    const humidityPercentage = Math.round(humidity * 100);
+
     humidityElement.innerText = `H: ${humidityPercentage}%`;
     windElement.innerText = `W: ${windInKmph} km/h`;
     weatherTemperature.innerText = celsius;
