@@ -75,7 +75,7 @@ const getData = () => {
     const aqiElement = document.querySelector(
       ".air-quality-container__display"
     );
-    const pm10Element = document.querySelector(".pm10");
+
     const so2Element = document.querySelector(".so2");
     const no2Element = document.querySelector(".no2");
     const coElement = document.querySelector(".co");
@@ -91,8 +91,7 @@ const getData = () => {
     const nameEnd = location.search(",");
     const filteredLocationName = location.slice(0, nameEnd);
     locationElement.innerText = filteredLocationName;
-    const { pm10, so2, no2, co } = dataQ.data.iaqi;
-    pm10Element.innerText = pm10.v;
+    const { so2, no2, co } = dataQ.data.iaqi;
     so2Element.innerText = so2.v;
     no2Element.innerText = no2.v;
     coElement.innerText = co.v;

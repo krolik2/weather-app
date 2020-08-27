@@ -48,7 +48,7 @@ body {
 
 .air-pollutant-list {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   list-style: none;
   grid-area: air-pollutant-list;
   align-self: center;
