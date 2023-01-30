@@ -6,7 +6,7 @@ window.addEventListener("load", () => {
 const getData = () => {
   let lat;
   let lon;
-  const proxy = "https://protected-badlands-82701.herokuapp.com/";
+  const proxy = "https://test-123-app.fly.dev/";
 
   const getLocation = position => {
     lat = position.coords.latitude;
