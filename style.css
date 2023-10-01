@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Varela Round', sans-serif;
 }
 
 body {
@@ -15,7 +16,9 @@ body {
 
 .dashboard {
   color: white;
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Onest", sans-serif; */
+  /* font-family: 'Varela Round', sans-serif; */
+  border-radius: 35px;
   padding: 10px;
   width: 60vw;
   height: 60vh;
@@ -23,19 +26,16 @@ body {
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6px);
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1fr 1px 1fr;
   grid-template-areas:
-    "clock animation-container"
-    "date weather-container"
-    "air-quality-container air-quality-container"
-    "air-pollutant-list air-pollutant-list";
+    "animation-container separator w-details"
 }
 
 .clock {
   text-align: center;
-  width: 500px;
+  width: 300px;
   font-weight: 300;
-  font-size: 8em;
+  font-size: 3em;
   place-self: center;
   grid-area: clock;
 }
@@ -46,7 +46,7 @@ body {
   place-self: start center;
 }
 
-.air-pollutant-list {
+/* .air-pollutant-list {
   display: flex;
   justify-content: space-around;
   list-style: none;
@@ -54,22 +54,57 @@ body {
   align-self: center;
   font-size: 1.3em;
   margin-bottom: 10px;
+} */
+
+.weather-details {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+  justify-content: center;
+  place-self: center;
+  grid-area: w-details;
+  /* font-family: "Onset", sans-serif; */
 }
 
-.air-pollutant-list__item {
+.weather-details__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: #738082;
+  font-size: 1rem;
+}
+
+.weather-details__item:nth-child(1) { order: 4; }
+.weather-details__item:nth-child(2) { order: 1; }
+.weather-details__item:nth-child(3) { order: 3; }
+.weather-details__item:nth-child(4) { order: 6; }
+.weather-details__item:nth-child(5) { order: 5; }
+.weather-details__item:nth-child(6) { order: 2; }
+
+/* .air-pollutant-list__item {
   position: relative;
+} */
+
+.value{
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+  color: #fff;
 }
 
-.air-pollutant-list__item::after {
+
+/* .air-pollutant-list__item::after {
   font-size: 0.6em;
   color: #ddd;
   font-family: "Open Sans", sans-serif;
   position: absolute;
   top: 30px;
   left: 0;
-}
+} */
 
-.pm10::after {
+
+/* .pm10::after {
   content: "PM10";
 }
 
@@ -83,7 +118,7 @@ body {
 
 .co::after {
   content: "CO";
-}
+} */
 
 .date {
   text-align: center;
@@ -93,16 +128,24 @@ body {
 }
 
 .animation-container {
-  width: 302px;
-  height: 152px;
+  width: auto;
+  height: 300px;
   place-self: center;
   grid-area: animation-container;
+  position: relative;
 }
 
-animation-container__icon {
-  width: 302px;
-  height: 152px;
+.animation-container > img {
+  width: auto;
+  height: 100%;
 }
+
+
+animation-container__icon {
+  width: 300px;
+  height: 300px;
+}
+
 
 .animation-container__error-msg--visible {
   width: 302px;
@@ -124,12 +167,67 @@ animation-container__icon {
 }
 
 .weather-container__location {
-  font-size: 1.5em;
-  text-align: center;
-  margin-bottom: 10px;
+  font-size: 2em;
+  font-weight: 700;
+  position: absolute;
+  top: 8px;
+  left: 0px;
+
 }
 
-@media (max-width: 1360px) {
+.weather-info {
+  position: absolute;
+  width: 100%;
+  bottom: 8px;
+  left: 0px;
+  /* font-family: 'Varela Round', sans-serif; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weather-container__description {
+  font-size: 1.5em;
+
+}
+
+.weather-container__temperature {
+  font-size: 3em;
+}
+
+.weather-container__icon {
+  padding-left: 15px;
+  height: 80px;
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+}
+
+.weather-details__desc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details_icon {
+  height: 40px;
+}
+
+.temparature_container{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.separator {
+  background: linear-gradient(0deg, rgba(26, 26, 26, 0.3) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(0, 0, 0, 0.3) 100%);
+  background-size: 1px 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: separator;
+}
+
+/* @media (max-width: 1360px) {
   .clock {
     width: 250px;
     font-size: 4em;
@@ -150,4 +248,4 @@ animation-container__icon {
       "air-quality-container"
       "air-pollutant-list";
   }
-}
+} */
